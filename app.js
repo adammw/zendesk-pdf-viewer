@@ -86,11 +86,15 @@
     onAppCreated: function() {
       this.loadAttachments().then(function(attachments) {
         var filteredAttachments = _.where(attachments, { content_type: 'application/pdf' });
-        this.switchTo('attachment_selector', {
-          attachments: filteredAttachments,
-          thumbnail_generator_src: this.assetURL('thumbnail_generator.html')
-        });
-        this.generateThumbnailsFor(filteredAttachments);
+        if (filteredAttachments.length) {
+          this.switchTo('attachment_selector', {
+            attachments: filteredAttachments,
+            thumbnail_generator_src: this.assetURL('thumbnail_generator.html')
+          });
+          this.generateThumbnailsFor(filteredAttachments);
+        } else {
+          this.hide();
+        }
       }.bind(this));
     },
 
