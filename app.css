@@ -60,6 +60,6 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.attachment img {
-  margin-bottom: 8px;
+.thumbnail {
+  max-width: 80px;
 }

@@ -2,8 +2,11 @@
 <div class="row-fluid">
   {{#each attachments}}
   <div class="span5 attachment-thumbnail-container">
-    <a class="attachment" href="{{content_url}}" data-open-in-pdf-viewer="true">
-      <img src="http://placehold.it/140x100&text=thumbnail"><br />{{file_name}}</a>
+    <a class="attachment" href="{{content_url}}" data-attachment-id="{{id}}" data-open-in-pdf-viewer="true">
+      <img class="thumbnail" src="http://placehold.it/140x100&text=thumbnail"><br />{{file_name}}</a>
   </div>
   {{/each}}
+</div>
+<div id="thumbnailGenerator" hidden>
+  {{iframe thumbnail_generator_src}}
 </div>

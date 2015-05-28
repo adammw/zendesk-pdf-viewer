@@ -1,10 +1,11 @@
+/* global escape */
 (function() {
-
   return {
     defaultState: 'loading',
 
     events: {
       'app.created': 'onAppCreated',
+      'iframe.thumbnail': 'onThumbnailReady',
       'click a[data-open-in-pdf-viewer]': 'onPdfViewerLinkClick',
       'click a[data-dismiss="modal"]': 'onDismissModalClick',
       'click .modal-wrapper': 'onDismissModalClick'
@@ -62,12 +63,40 @@
       });
     },
 
+    generateThumbnailsFor: function(attachments) {
+      attachments.forEach(function(attachment) {
+        if (this.store('thumbnail_' + attachment.id)) {
+          this.updateThumbnail({ id: attachment.id, dataUri: this.store('thumbnail_' + attachment.id) });
+        } else {
+          this.fetchS3Url(attachment.content_url).then(function(s3AttachmentUrl) {
+            this.postMessage('generate_thumbnail', {
+              id: attachment.id,
+              width: 180,
+              url: s3AttachmentUrl
+            });
+          }.bind(this));
+        }
+      }, this);
+    },
+
+    updateThumbnail: function(data) {
+      this.$(helpers.fmt('.attachment[data-attachment-id=%@] .thumbnail', data.id)).attr('src', data.dataUri);
+    },
+
     onAppCreated: function() {
       this.loadAttachments().then(function(attachments) {
+        var filteredAttachments = _.where(attachments, { content_type: 'application/pdf' });
         this.switchTo('attachment_selector', {
-          attachments: _.where(attachments, { content_type: 'application/pdf' })
+          attachments: filteredAttachments,
+          thumbnail_generator_src: this.assetURL('thumbnail_generator.html')
         });
+        this.generateThumbnailsFor(filteredAttachments);
       }.bind(this));
+    },
+
+    onThumbnailReady: function(data) {
+      this.updateThumbnail(data);
+      this.store('thumbnail_' + data.id, data.dataUri);
     },
 
     onPdfViewerLinkClick: function(e) {
