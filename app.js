@@ -8,7 +8,8 @@
       'iframe.thumbnail': 'onThumbnailReady',
       'click a[data-open-in-pdf-viewer]': 'onPdfViewerLinkClick',
       'click a[data-dismiss="modal"]': 'onDismissModalClick',
-      'click .modal-wrapper': 'onDismissModalClick'
+      'click .modal-wrapper': 'onDismissModalClick',
+      'click .maximize': 'onMaximizeClick'
     },
 
     requests: {
@@ -123,6 +124,21 @@
 
     onDismissModalClick: function() {
       this.$('.modal-wrapper').remove();
+    },
+
+    onMaximizeClick: function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      var elem = this.$('.pdf-viewer-frame').get(0);
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+      } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+      } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+      }
     }
   };
 
