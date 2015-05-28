@@ -1,0 +1,4 @@
+<div class="loading">
+  Loading attachments...
+  {{spinner "dotted"}}
+</div>

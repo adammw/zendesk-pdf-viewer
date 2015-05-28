@@ -1,0 +1,9 @@
+<h4>Attachments on this ticket</h4>
+<div class="row-fluid">
+  {{#each attachments}}
+  <div class="span5 attachment-thumbnail-container">
+    <a class="attachment" href="{{content_url}}" data-open-in-pdf-viewer="true">
+      <img src="http://placehold.it/140x100&text=thumbnail"><br />{{file_name}}</a>
+  </div>
+  {{/each}}
+</div>

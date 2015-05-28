@@ -1,0 +1,11 @@
+<div class="modal-wrapper">
+  <div id="pdf_viewer" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">{{title}}</h3>
+    </div>
+    <div class="modal-body">
+      <iframe class="pdf-viewer-frame" frameborder="0" src="{{url}}"></iframe>
+    </div>
+  </div>
+</div>
