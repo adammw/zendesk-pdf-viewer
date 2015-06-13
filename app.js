@@ -116,7 +116,7 @@
         $link.removeClass('loading');
         var modalHtml = this.renderTemplate('pdf_viewer', {
           title: $link.text(),
-          url: 'http://mozilla.github.io/pdf.js/web/viewer.html?file=' + escape(s3AttachmentUrl)
+          url: 'https://mozilla.github.io/pdf.js/web/viewer.html?file=' + escape(s3AttachmentUrl)
         });
         this.$(modalHtml).appendTo(this.$());
       }.bind(this));
