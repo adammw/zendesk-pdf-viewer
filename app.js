@@ -1,5 +1,8 @@
 /* global escape */
 (function() {
+  var STATIC_ASSET_SERVER = 'https://adammw.github.io/zendesk-pdf-viewer/';
+  var REDIRECT_RESOLVER_SERVER = 'https://cors-anywhere.herokuapp.com/';
+
   return {
     defaultState: 'loading',
 
@@ -55,7 +58,7 @@
       // This relies on an external service to fetch the Zendesk attachment redirect to the assets server
       return this.promise(function(resolve, reject) {
         this.ajax('makeRequest', {
-          url: 'https://cors-anywhere.herokuapp.com/' + attachmentUrl,
+          url: REDIRECT_RESOLVER_SERVER + attachmentUrl,
           method: 'HEAD',
           cors: true
         }).then(function(data, status, jqXHR) {
@@ -90,7 +93,7 @@
         if (filteredAttachments.length) {
           this.switchTo('attachment_selector', {
             attachments: filteredAttachments,
-            thumbnail_generator_src: this.assetURL('thumbnail_generator.html')
+            thumbnail_generator_src: STATIC_ASSET_SERVER + '/web/thumbnail_generator.html'
           });
           this.generateThumbnailsFor(filteredAttachments);
         } else {
@@ -116,7 +119,7 @@
         $link.removeClass('loading');
         var modalHtml = this.renderTemplate('pdf_viewer', {
           title: $link.text(),
-          url: 'https://mozilla.github.io/pdf.js/web/viewer.html?file=' + escape(s3AttachmentUrl)
+          url: STATIC_ASSET_SERVER + '/web/viewer.html?file=' + escape(s3AttachmentUrl)
         });
         this.$(modalHtml).appendTo(this.$());
       }.bind(this));
