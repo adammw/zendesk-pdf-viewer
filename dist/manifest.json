@@ -6,7 +6,7 @@
     "url": "https://github.com/adammw"
   },
   "defaultLocale": "en",
-  "private": true,
+  "private": false,
   "location": {
     "support": {
       "background": {
