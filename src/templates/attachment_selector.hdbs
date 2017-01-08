@@ -1,0 +1,12 @@
+<h1 class="u-epsilon u-mb">Attachments on this ticket</h1>
+<div class="l-grid">
+  {{#each attachments ~}}
+  <div class="l-grid__item u-1/2">
+    <a class="u-display-block thumbnail thumbnail--loading" data-attachment-index="{{@index}}" href="{{contentUrl}}">
+      <canvas class="thumbnail__canvas"></canvas>
+      <br />
+      {{filename}}
+    </a>
+  </div>
+  {{~/each}}
+</div>

@@ -1,0 +1,8 @@
+{
+  "app": {
+    "name": "PDF Viewer for Zendesk",
+    "description": "View PDFs in alongside tickets in Zendesk Support",
+    "long_description": "The PDF viewer app makes it easy to view PDF attachments alongside your Zendesk Support tickets.",
+    "installation_instructions": "Click \"Install App\" to install the app.\n\nThe \"Require authentication to download\" setting must be disabled for this app to work."
+  }
+}

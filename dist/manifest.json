@@ -1,0 +1,23 @@
+{
+  "name": "PDF Viewer for Zendesk",
+  "author": {
+    "name": "adammw",
+    "email": "adman.com@gmail.com",
+    "url": "https://github.com/adammw"
+  },
+  "defaultLocale": "en",
+  "private": true,
+  "location": {
+    "support": {
+      "background": {
+        "url": "assets/index.html"
+      },
+      "ticket_sidebar": {
+        "autoLoad": false,
+        "url": "assets/index.html"
+      }
+    }
+  },
+  "version": "2.0",
+  "frameworkVersion": "2.0"
+}
