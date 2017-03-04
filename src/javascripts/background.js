@@ -17,8 +17,8 @@ class Background {
   onInstanceCreated(context) {
     const client = this.client.instance(context.instanceGuid);
     if (context.location == 'modal') {
-      // TODO: dynamically detect correct size
-      client.invoke('resize', { width: '800px', height: '500px' });
+      // force viewing window to be a reasonable size
+      client.invoke('resize', { width: '80vw', height: '80vh' });
     } else if (context.location == 'ticket_sidebar') {
       // defer loading ticket sidebar app until we are certain there are pdf attachments on the ticket
       extractPdfAttachments(client).then((pdfAttachments) => {
